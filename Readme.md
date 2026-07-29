@@ -306,50 +306,41 @@ O operador Laplaciano é baseado na **segunda derivada espacial** da imagem.
 
 Considere uma imagem em escala de cinza representada por:
 
-\[
-I(x,y)
-\]
+<p align="center">
+  <img src="database/equations/1.png"
+       width="70">
+</p>
 
 O Laplaciano é definido como:
 
-\[
-\nabla^2 I =
-\frac{\partial^2 I}{\partial x^2}
-+
-\frac{\partial^2 I}{\partial y^2}
-\]
+<p align="center">
+  <img src="database/equations/2.png"
+       width="150">
+</p>
 
 Na prática, essa operação é implementada através da convolução da imagem com uma máscara discreta, por exemplo:
 
-\[
-\begin{bmatrix}
-0 & 1 & 0\\
-1 & -4 & 1\\
-0 & 1 & 0
-\end{bmatrix}
-\]
+
+<p align="center">
+  <img src="database/equations/3.png"
+       width="100">
+</p>
 
 ou
 
-\[
-\begin{bmatrix}
-1 & 1 & 1\\
-1 & -8 & 1\\
-1 & 1 & 1
-\end{bmatrix}
-\]
+<p align="center">
+  <img src="database/equations/4.png"
+       width="100">
+</p>
 
 Após aplicar esse operador, regiões com mudanças bruscas de intensidade produzem valores elevados, enquanto regiões suavizadas apresentam resposta próxima de zero.
 
 Entretanto, utilizar apenas o Laplaciano não é suficiente. Por esse motivo, calcula-se sua **variância**:
 
-\[
-\sigma_L^2
-=
-\frac{1}{N}
-\sum_{i=1}^{N}
-(L_i-\mu_L)^2
-\]
+<p align="center">
+  <img src="database/equations/5.png"
+       width="180">
+</p>
 
 onde:
 
@@ -374,56 +365,42 @@ Enquanto o Laplaciano utiliza a segunda derivada, o operador de Sobel estima a *
 
 Primeiramente são calculados os gradientes nas direções horizontal e vertical:
 
-\[
-G_x=
-\frac{\partial I}{\partial x}
-\]
-
-\[
-G_y=
-\frac{\partial I}{\partial y}
-\]
+<p align="center">
+  <img src="database/equations/6.png"
+       width="80">
+</p>
 
 Esses gradientes são obtidos pela convolução da imagem utilizando os kernels:
 
 ### Gradiente horizontal
 
-\[
-\begin{bmatrix}
--1&0&1\\
--2&0&2\\
--1&0&1
-\end{bmatrix}
-\]
+<p align="center">
+  <img src="database/equations/7.png"
+       width="100">
+</p>
 
 ### Gradiente vertical
 
-\[
-\begin{bmatrix}
--1&-2&-1\\
-0&0&0\\
-1&2&1
-\end{bmatrix}
-\]
-
+<p align="center">
+  <img src="database/equations/8.png"
+       width="100">
+</p>
 Em seguida calcula-se a magnitude do gradiente:
 
-\[
-G=
-\sqrt{G_x^2+G_y^2}
-\]
+<p align="center">
+  <img src="database/equations/9.png"
+       width="100">
+</p>
 
 Quanto maior o gradiente, maior a intensidade das bordas presentes na imagem.
 
 Neste trabalho foi utilizada a **média da magnitude dos gradientes**:
 
-\[
-\bar G
-=
-\frac1N
-\sum_{i=1}^{N}
-G_i
-\]
+<p align="center">
+  <img src="database/equations/10.png"
+       width="100">
+</p>
+
 
 No código:
 
@@ -445,38 +422,17 @@ O **Laplaciano** mede a quantidade de detalhes de alta frequência presentes na 
 
 Após diversos experimentos, ambas foram normalizadas para o intervalo \([0,1]\):
 
-\[
-S_L
-=
-\min
-\left(
-\frac{\sigma_L^2}{600},
-1
-\right)
-\]
-
-\[
-S_G
-=
-\min
-\left(
-\frac{\bar G}{50},
-1
-\right)
-\]
+<p align="center">
+  <img src="database/equations/11.png"
+       width="150">
+</p>
 
 O score final foi calculado por uma combinação linear:
 
-\[
-Score
-=
-100
-\left(
-0.7S_L
-+
-0.3S_G
-\right)
-\]
+<p align="center">
+  <img src="database/equations/12.png"
+       width="230">
+</p>
 
 A atribuição de maior peso ao Laplaciano foi definida empiricamente durante os experimentos, pois essa métrica apresentou maior sensibilidade às variações de nitidez observadas nas imagens do conjunto de dados.
 
@@ -712,13 +668,11 @@ Essa normalização evita que diferenças de capitalização ou pequenos espaço
 
 Cada campo recebe uma pontuação binária definida por:
 
-\[
-s_i=
-\begin{cases}
-100, & \text{se o valor previsto é idêntico ao Ground Truth};\\
-0, & \text{caso contrário.}
-\end{cases}
-\]
+
+<p align="center">
+  <img src="database/equations/13.png"
+       width="400">
+</p>
 
 Sejam:
 
@@ -727,21 +681,18 @@ Sejam:
 
 A pontuação global do OCR é calculada pela média aritmética dos scores individuais:
 
-\[
-Score=
-\frac{1}{N}
-\sum_{i=1}^{N}
-s_i
-\]
+
+<p align="center">
+  <img src="database/equations/14.png"
+       width="100">
+</p>
 
 Como cada campo possui o mesmo peso, essa expressão pode ser simplificada para:
 
-\[
-Score=
-100\times
-\frac{\text{Número de campos corretamente reconhecidos}}
-{\text{Número total de campos}}
-\]
+<p align="center">
+  <img src="database/equations/15.png"
+       width="500">
+</p>
 
 Por exemplo, considerando um documento contendo **10 campos**, caso o modelo reconheça corretamente **8** deles, a pontuação obtida será:
 
