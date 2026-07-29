@@ -696,13 +696,10 @@ Como cada campo possui o mesmo peso, essa expressão pode ser simplificada para:
 
 Por exemplo, considerando um documento contendo **10 campos**, caso o modelo reconheça corretamente **8** deles, a pontuação obtida será:
 
-\[
-Score=
-100\times
-\frac{8}{10}
-=
-80\%
-\]
+<p align="center">
+  <img src="database/equations/16.png"
+       width="500">
+</p>
 
 Esse resultado indica que o documento atende ao requisito mínimo estabelecido pelo desafio.
 
