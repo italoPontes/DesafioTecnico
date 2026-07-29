@@ -698,7 +698,7 @@ Por exemplo, considerando um documento contendo **10 campos**, caso o modelo rec
 
 <p align="center">
   <img src="database/equations/16.png"
-       width="500">
+       width="200">
 </p>
 
 Esse resultado indica que o documento atende ao requisito mínimo estabelecido pelo desafio.
