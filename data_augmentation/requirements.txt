@@ -1,0 +1,4 @@
+opencv-python>=4.13.0.92
+albumentations>=2.0.8
+augraphy>=8.2.6
+openai>=2.50.0

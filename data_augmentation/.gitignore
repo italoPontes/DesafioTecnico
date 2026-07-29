@@ -1,0 +1,11 @@
+# Segredos - nunca versionar
+.env
+openai.txt
+huggingface.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs gerados pelos scripts
+*.log
