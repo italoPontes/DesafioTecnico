@@ -106,7 +106,7 @@ database/gpt-2/
 
 ### Custos operacionais
 
-Os custos operacionais mostram que para gerar apenas 13 modificações, foi gasto cerca de $1.05 (o que custou aproximadamente R$ 5,38). Ou seja, cerca de 41 centavos por imagem, o que se tornaria economicamente inviável para realização desses experimentos.
+Os custos operacionais mostram que para gerar apenas 13 modificações, foi gasto cerca de <span>$</span>1.05 (o que custou aproximadamente R<span>$</span> 5,38). Ou seja, cerca de 41 centavos por imagem, o que se tornaria economicamente inviável para realização desses experimentos.
 
 ![Comparação entre abordagens](database/openai_cost.png)
 https://platform.openai.com/settings/organization/usage
